@@ -18,7 +18,13 @@ android.permissions = INTERNET
 
 android.api = 33
 android.minapi = 21
+android.skip_update = False
+android.ndk = 25b
+android.sdk = 33
+p4a.branch = stable
+
 
 android.accept_sdk_license = True
 
-log_level = 2
+log_level = 3
+
