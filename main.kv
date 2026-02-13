@@ -1,0 +1,58 @@
+ScreenManager:
+
+    LoginScreen:
+        name: "login"
+
+    OTPScreen:
+        name: "otp"
+
+    HomeScreen:
+        name: "home"
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 20
+
+        Label:
+            text: "Email Login"
+            font_size: 32
+
+        TextInput:
+            id: email
+            hint_text: "Enter Email"
+            multiline: False
+
+        Button:
+            text: "Send OTP"
+            on_press: root.send_otp()
+
+
+<OTPScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 20
+
+        Label:
+            text: "Enter Email OTP"
+            font_size: 28
+
+        TextInput:
+            id: otp
+            hint_text: "Enter OTP"
+            multiline: False
+
+        Button:
+            text: "Verify OTP"
+            on_press: root.verify_otp()
+
+<HomeScreen>:
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Label:
+            text: "Welcome to TRACKH2O 🎉"
+            font_size: 30
