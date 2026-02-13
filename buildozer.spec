@@ -21,10 +21,13 @@ android.minapi = 21
 android.skip_update = False
 android.ndk = 25b
 android.sdk = 33
-p4a.branch = stable
+p4a.branch = master
+android.gradle_dependencies = com.android.tools.build:gradle:7.4.2
+
 
 
 android.accept_sdk_license = True
 
 log_level = 3
+
 
