@@ -16,18 +16,20 @@ fullscreen = 0
 
 android.permissions = INTERNET
 
-android.api = 33
+android.api = 31
 android.minapi = 21
 android.skip_update = False
 android.ndk = 25b
 android.sdk = 33
 p4a.branch = master
-android.gradle_dependencies = com.android.tools.build:gradle:7.4.2
+android.gradle_dependencies = com.android.tools.build:gradle:7.0.4
 
+android.enable_androidx = True
 
 
 android.accept_sdk_license = True
-
+p4a.branch = develop
 log_level = 3
+
 
 
