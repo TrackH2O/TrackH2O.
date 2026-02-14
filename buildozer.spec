@@ -21,7 +21,6 @@ android.minapi = 21
 android.skip_update = False
 android.ndk = 25b
 android.sdk = 33
-p4a.branch = master
 android.gradle_dependencies = com.android.tools.build:gradle:7.0.4
 
 android.enable_androidx = True
@@ -30,6 +29,7 @@ android.enable_androidx = True
 android.accept_sdk_license = True
 p4a.branch = develop
 log_level = 3
+
 
 
 
