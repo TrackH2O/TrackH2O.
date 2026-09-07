@@ -1,0 +1,548 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #000;
+        }
+
+
+        /* =========================
+           INTRO SCREEN
+        ========================= */
+
+        #introScreen {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: #000;
+
+            z-index: 9999;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* =========================
+           VIDEO
+        ========================= */
+
+        #introVideo {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: none;
+        }
+
+
+        /* =========================
+           START SCREEN
+        ========================= */
+
+        #startScreen {
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(0, 0, 0, 0.75);
+
+            z-index: 20;
+
+            color: white;
+
+            text-align: center;
+        }
+
+
+        #startScreen h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+
+        #startButton {
+            padding: 15px 35px;
+
+            border: none;
+            border-radius: 30px;
+
+            background: white;
+            color: black;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        #startButton:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* =========================
+           VIDEO OVERLAY
+        ========================= */
+
+        .videoOverlay {
+            position: absolute;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.10);
+
+            pointer-events: none;
+
+            z-index: 5;
+        }
+
+
+        /* =========================
+           CONTROLS
+        ========================= */
+
+        .controls {
+            position: absolute;
+
+            bottom: 30px;
+            left: 0;
+            right: 0;
+
+            display: none;
+
+            justify-content: flex-end;
+
+            gap: 12px;
+
+            padding: 0 25px;
+
+            z-index: 10;
+        }
+
+
+        .controlButton {
+            padding: 12px 20px;
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 30px;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(8px);
+
+            transition: 0.25s;
+        }
+
+
+        .controlButton:hover {
+            background: white;
+            color: black;
+        }
+
+
+        /* =========================
+           DIFY SCREEN
+        ========================= */
+
+        #difyScreen {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: white;
+
+            display: none;
+
+            z-index: 1;
+        }
+
+
+        #difyFrame {
+            width: 100%;
+            height: 100%;
+
+            border: none;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        #loadingScreen {
+            position: fixed;
+
+            inset: 0;
+
+            background: white;
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            z-index: 10000;
+        }
+
+
+        .loader {
+            width: 45px;
+            height: 45px;
+
+            border: 5px solid #ddd;
+            border-top: 5px solid #333;
+
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            #startScreen h1 {
+                font-size: 24px;
+            }
+
+            #startButton {
+                padding: 13px 28px;
+                font-size: 15px;
+            }
+
+            .controls {
+                bottom: 20px;
+                padding: 0 15px;
+            }
+
+            .controlButton {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================
+         INTRO SCREEN
+    ================================== -->
+
+    <div id="introScreen">
+
+
+        <!-- VIDEO -->
+
+        <video
+            id="introVideo"
+            playsinline
+            preload="auto">
+
+            <source
+                src="intro-video.mp4"
+                type="video/mp4">
+
+            Your browser does not support HTML5 video.
+
+        </video>
+
+
+        <!-- OVERLAY -->
+
+        <div class="videoOverlay"></div>
+
+
+        <!-- ==================================
+             START SCREEN
+        ================================== -->
+
+        <div id="startScreen">
+
+            <h1>
+                Welcome TO NO WAY HOME !!
+            </h1>
+
+            <button id="startButton">
+                ▶ Start
+            </button>
+
+        </div>
+
+
+        <!-- ==================================
+             VIDEO CONTROLS
+        ================================== -->
+
+        <div class="controls">
+
+
+            <button
+                id="soundButton"
+                class="controlButton">
+
+                🔊 Sound On
+
+            </button>
+
+
+            <button
+                id="skipButton"
+                class="controlButton">
+
+                Skip Intro →
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================
+         LOADING SCREEN
+    ================================== -->
+
+    <div id="loadingScreen">
+
+        <div class="loader"></div>
+
+    </div>
+
+
+    <!-- ==================================
+         DIFY APP
+    ================================== -->
+
+    <div id="difyScreen">
+
+        <iframe
+            id="difyFrame"
+            src="https://udify.app/chat/kIfrxNLB4porLBFh"
+            allow="microphone">
+
+        </iframe>
+
+    </div>
+
+
+    <!-- ==================================
+         JAVASCRIPT
+    ================================== -->
+
+    <script>
+
+
+        const introScreen =
+            document.getElementById("introScreen");
+
+        const introVideo =
+            document.getElementById("introVideo");
+
+        const startScreen =
+            document.getElementById("startScreen");
+
+        const startButton =
+            document.getElementById("startButton");
+
+        const controls =
+            document.querySelector(".controls");
+
+        const soundButton =
+            document.getElementById("soundButton");
+
+        const skipButton =
+            document.getElementById("skipButton");
+
+        const difyScreen =
+            document.getElementById("difyScreen");
+
+        const loadingScreen =
+            document.getElementById("loadingScreen");
+
+
+        /* =========================
+           START VIDEO WITH SOUND
+        ========================= */
+
+        startButton.addEventListener("click", function () {
+
+            /*
+             * User has interacted with the page.
+             * Browser now allows audio.
+             */
+
+            introVideo.muted = false;
+
+            introVideo.volume = 1;
+
+            introVideo.style.display = "block";
+
+            startScreen.style.display = "none";
+
+            controls.style.display = "flex";
+
+
+            introVideo.play()
+                .then(function () {
+
+                    console.log("Video playing with sound.");
+
+                })
+                .catch(function (error) {
+
+                    console.log(
+                        "Video could not start:",
+                        error
+                    );
+
+                });
+
+        });
+
+
+        /* =========================
+           SOUND BUTTON
+        ========================= */
+
+        soundButton.addEventListener("click", function () {
+
+            if (introVideo.muted) {
+
+                introVideo.muted = false;
+
+                introVideo.volume = 1;
+
+                soundButton.innerHTML =
+                    "🔊 Sound On";
+
+            } else {
+
+                introVideo.muted = true;
+
+                soundButton.innerHTML =
+                    "🔇 Sound Off";
+
+            }
+
+        });
+
+
+        /* =========================
+           VIDEO FINISHED
+        ========================= */
+
+        introVideo.addEventListener("ended", function () {
+
+            openDify();
+
+        });
+
+
+        /* =========================
+           SKIP INTRO
+        ========================= */
+
+        skipButton.addEventListener("click", function () {
+
+            openDify();
+
+        });
+
+
+        /* =========================
+           OPEN DIFY
+        ========================= */
+
+        function openDify() {
+
+            introVideo.pause();
+
+            introScreen.style.display = "none";
+
+            loadingScreen.style.display = "flex";
+
+            difyScreen.style.display = "block";
+
+
+            setTimeout(function () {
+
+                loadingScreen.style.display = "none";
+
+            }, 800);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
